@@ -1,0 +1,32 @@
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "admin",
+    "password": "VeryStrongPassword123"
+}
+###
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "admin",
+    "password": "VeryStrongPassword123"
+}
+
+###
+POST http://localhost:3000/admin/createDesigner
+Content-Type: application/json
+Authorization: Bearer ..o78BMx4g1QLeHNjnbEpUmerUEWmf622fFOIz03x4WOI
+
+{
+  "email": "danstrrr@yandex.ru",
+  "isAdmin": false,
+  "name": "string",
+  "surname": "string",
+  "patronymic": "string"
+}
+
+###
+
+PUT http://localhost:3000/project/12

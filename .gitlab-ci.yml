@@ -1,0 +1,18 @@
+before_script:
+  - apk update
+  - apk add git
+  - "which ssh-agent || ( apk add openssh )"
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | ssh-add -
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  allow_failure: false
+  script:
+    - ssh notCompla@some.ru "export GIT_SSL_NO_VERIFY=true && cd ~/notCompla && git fetch && git checkout master && git pull origin master && docker-compose build && docker-compose up -d && exit"
+  when: manual
